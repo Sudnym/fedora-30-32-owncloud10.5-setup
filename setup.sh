@@ -2,13 +2,7 @@
 
 echo "Installing dependencies $(yes | dnf install criu) $(yes | dnf install container-selinux containerd libbsd libnet runc) $(yes | dnf install moby-engine)"
 
-version=$(cat /etc/fedora-release | grep "31")
-if [ "$version" = 31 ]
-then
-	echo "Enabling backwards compatibility for cgroups$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
-fi
-
-if [ "$version" = 32 ]
+if [ "$3" = yes ]
 then
 	echo "Enabling backwards compatibility for cgroups$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
 else
