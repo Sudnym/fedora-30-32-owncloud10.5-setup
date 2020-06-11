@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$(RUN dnf clean all && rm -r /var/cache/dnf  && dnf upgrade -y && dnf update -y)" 
+echo "$(dnf clean all && rm -r /var/cache/dnf  && dnf upgrade -y && dnf update -y)" 
 echo "$(dnf -y install dnf-plugins-core && sudo dnf config-manager \
     --add-repo \
     https://download.docker.com/linux/fedora/docker-ce.repo)"
