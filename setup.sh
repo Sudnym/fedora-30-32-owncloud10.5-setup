@@ -3,14 +3,14 @@
 echo "Installing dependencies $(yes | dnf install criu) $(yes | dnf install container-selinux containerd libbsd libnet runc) $(yes | dnf install moby-engine)"
 
 version=$(cat /etc/fedora-release | grep "31")
-if [ $version = 31 ]
+if [ "$version" = 31 ]
 then
-	echo "Enabling backwards compatibility for cgroups\n$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
+	echo "Enabling backwards compatibility for cgroups$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
 fi
 
-if [ $version = 32 ]
+if [ "$version" = 32 ]
 then
-	echo "Enabling backwards compatibility for cgroups\n$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
+	echo "Enabling backwards compatibility for cgroups$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
 else
 	echo "Skipping cgroups backwards compatibility."
 fi
@@ -28,7 +28,7 @@ echo "$(mkdir owncloud-docker-server && cd owncloud-docker-server)"
 echo "$(wget https://raw.githubusercontent.com/owncloud/docs/master/modules/admin_manual/examples/installation/docker/docker-compose.yml)"
 user=$1
 pass=$2
-echo $'OWNCLOUD_VERSION=10.5\nOWNCLOUD_DOMAIN=localhost\nADMIN_USERNAME='$user$'\nADMIN_PASSWORD='$pass$'\nHTTP_PORT=8080\nEOF' > .env
+echo $'OWNCLOUD_VERSION=10.5\nOWNCLOUD_DOMAIN=localhost\nADMIN_USERNAME='"$user"$'\nADMIN_PASSWORD='"$pass"$'\nHTTP_PORT=8080\nEOF' > .env
 echo "$(docker-compose up -d)"
 
 
