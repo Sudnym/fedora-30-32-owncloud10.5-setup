@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "$(dnf clean all && rm -r /var/cache/dnf  && dnf upgrade -y && dnf update -y)" 
-echo "$(yes | dnf install docker)"
+echo "$(yes | dnf install criu && yes| dnf install container-selinux containerd libbsd libnet runc && yes | dnf install moby-engine)"
 
 version = $(cat /etc/fedora-release | grep "31")
 if [ $version = 31 ]
