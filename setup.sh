@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$(yes | dnf install criu && yes| dnf install container-selinux containerd libbsd libnet runc && yes | dnf install moby-engine)"
+echo "$(dnf install criu && dnf install container-selinux containerd libbsd libnet runc && dnf install moby-engine)"
 
 version = $(cat /etc/fedora-release | grep "31")
 if [ $version = 31 ]
