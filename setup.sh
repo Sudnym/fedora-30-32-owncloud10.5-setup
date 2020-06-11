@@ -6,12 +6,13 @@ echo "$(dnf -y install dnf-plugins-core && sudo dnf config-manager \
 
 echo "$(yes | dnf install docker-ce docker-ce-cli containerd.io)"
 
-if [ $(cat /etc/fedora-release | grep "31") = 31 ]
+version = $(cat /etc/fedora-release | grep "31")
+if [ $version = 31 ]
 then
 	echo "Enabling backwards compatibility for cgroups\n$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
 fi
 
-if [ $(cat /etc/fedora-release | grep "32") = 32 ]
+if [ $version = 32 ]
 then
 	echo "Enabling backwards compatibility for cgroups\n$(grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0")"
 else
