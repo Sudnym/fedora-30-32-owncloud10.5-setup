@@ -1,11 +1,7 @@
 #!/bin/bash
 
 echo "$(dnf clean all && rm -r /var/cache/dnf  && dnf upgrade -y && dnf update -y)" 
-echo "$(dnf -y install dnf-plugins-core && sudo dnf config-manager \
-    --add-repo \
-    https://download.docker.com/linux/fedora/docker-ce.repo)"
-
-echo "$(yes | dnf install docker-ce docker-ce-cli containerd.io)"
+echo "$(dnf install docker)"
 
 version = $(cat /etc/fedora-release | grep "31")
 if [ $version = 31 ]
