@@ -22,7 +22,7 @@ echo "$(mkdir owncloud-docker-server)"
 echo "$(cd owncloud-docker-server && wget https://raw.githubusercontent.com/owncloud/docs/master/modules/admin_manual/examples/installation/docker/docker-compose.yml)"
 user=$1
 pass=$2
-echo $'OWNCLOUD_VERSION=10.5\nOWNCLOUD_DOMAIN=localhost\nADMIN_USERNAME='"$user"$'\nADMIN_PASSWORD='"$pass"$'\nHTTP_PORT=8080\nEOF' > .env
+echo "$(cd owncloud-docker-server && $'OWNCLOUD_VERSION=10.5\nOWNCLOUD_DOMAIN=localhost\nADMIN_USERNAME='"$user"$'\nADMIN_PASSWORD='"$pass"$'\nHTTP_PORT=8080\nEOF' > .env)"
 echo "$(cd owncloud-docker-server && docker-compose up -d)"
 
 
