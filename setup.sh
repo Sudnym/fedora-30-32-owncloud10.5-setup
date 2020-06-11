@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$(dnf install criu && dnf install container-selinux containerd libbsd libnet runc && dnf install moby-engine)"
+echo "Installing criu $(yes | dnf install criu) criu installed\ninstalling dependencies &(yes | dnf install container-selinux containerd libbsd libnet runc) dependencies installed.\nInstalling moby-engine.$(yes | dnf install moby-engine)moby-engine installed."
 
 version = $(cat /etc/fedora-release | grep "31")
 if [ $version = 31 ]
